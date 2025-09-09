@@ -1,0 +1,49 @@
+services:
+  ecommerce-service:
+    build: ./ecom_api_service
+    container_name: ecommerce-service
+    ports:
+      - "8001:8000"
+    volumes:
+      - ./ecom_api_service:/app
+    depends_on:
+      - ecommerce-db
+    networks:
+      - local-network
+
+  ecommerce-db:
+    image: postgres:15
+    container_name: ecommerce-db
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: passw0rd
+      POSTGRES_DB: db_ecom_data_analytics
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - local-network
+
+  ecommerce-dashboard:
+    build: ./ecom_dashboard
+    container_name: ecommerce-dashboard
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./ecom_dashboard:/app
+      - /app/node_modules
+    working_dir: /app
+    command: npm run dev
+    depends_on:
+      - ecommerce-service
+    networks:
+      - local-network
+
+volumes:
+  postgres_data:
+
+networks:
+  local-network:
+    driver: bridge
