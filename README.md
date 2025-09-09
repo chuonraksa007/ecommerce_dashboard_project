@@ -1,3 +1,7 @@
+## 📊 Dashboard Preview
+
+![Dashboard](./dashboard.png)
+
 # 🚀 E-commerce Data Analytic Project
 
 A scalable, production-ready microservice architecture using **FastAPI**, **PostgreSQL**, and **Docker** for building a robust e-commerce data analytic project.
