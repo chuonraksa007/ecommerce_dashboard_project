@@ -1,6 +1,6 @@
 ## 📊 Dashboard Preview
 
-![Dashboard](./dashboard.png)s
+![Dashboard](./dashboard.png)
 
 # 🚀 E-commerce Data Analytic Project
 
